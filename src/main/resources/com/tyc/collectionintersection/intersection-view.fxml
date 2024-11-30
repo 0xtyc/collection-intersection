@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
+
+
+<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.tyc.collectionintersection.IntersectionController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Enter size of collection A" />
+    <TextField fx:id="sizeTextFieldA" promptText="Enter size of collection A" text="100"/>
+    <Label text="Enter size of collection B" />
+    <TextField fx:id="sizeTextFieldB" promptText="Enter size of collection B" text="10000"/>
+    <Label text="Select which collection to hash" />
+    <ComboBox fx:id="optionComboBox" value="A">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="A" />
+                <String fx:value="B" />
+            </FXCollections>
+        </items>
+    </ComboBox> 
+
+    <Label text="Enter the maximum value for random collection generation"/>
+    <TextField fx:id="maxValueTextField" promptText="Enter the maximum value" text="65535"/>
+    <Label fx:id="sizeOfIntersectionLabel" />
+    <Label fx:id="timeToCalculateLabel" />
+    <Label fx:id="errorLabel" textFill="red" />
+    <Button text="Run" onAction="#onRunButtonClick"/>
+</VBox>
