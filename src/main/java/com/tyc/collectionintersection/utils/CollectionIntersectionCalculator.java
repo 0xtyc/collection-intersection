@@ -1,9 +1,16 @@
 
-package com.tyc.collectionintersection;
+package com.tyc.collectionintersection.utils;
 
 import java.util.HashSet;
 
 public class CollectionIntersectionCalculator {
+    /**
+     * Calculate the intersection of two collections using a HashSet.
+     * @param collectionToHash The collection to hash.
+     * @param collectionToCheck The collection to check for intersection.
+     * @return A HashSet containing the intersection of the two collections.
+     */
+
     static public HashSet<Integer> calculateIntersectionSizeWithHash(int[] collectionToHash, int[] collectionToCheck) {
         HashSet<Integer> collectionSet = new HashSet<>();
         for (int num : collectionToHash) {
@@ -16,16 +23,5 @@ public class CollectionIntersectionCalculator {
             }
         };
         return intersectionSet;
-    }
-
-    static public int timeToCalculateIntersectionWithHashing(int[] collectionToHash, int[] collectionToCheck, int runs) {
-        int totalTime = 0;
-        for (int i = 0; i < runs; i++) {
-            totalTime += ExecutionTimer.timeExecution(() -> {
-                calculateIntersectionSizeWithHash(collectionToHash, collectionToCheck);
-                return null;
-            });
-        }
-        return totalTime / runs;
     }
 }

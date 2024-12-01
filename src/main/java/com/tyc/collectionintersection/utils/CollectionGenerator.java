@@ -1,4 +1,4 @@
-package com.tyc.collectionintersection;
+package com.tyc.collectionintersection.utils;
 
 public class CollectionGenerator {
 
