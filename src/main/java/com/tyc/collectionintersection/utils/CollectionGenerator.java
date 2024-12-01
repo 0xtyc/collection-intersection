@@ -2,18 +2,22 @@ package com.tyc.collectionintersection.utils;
 
 public class CollectionGenerator {
 
-    private int maxValue;
+    private int upperBound;
 
     public CollectionGenerator() {
-        this.maxValue = Integer.MAX_VALUE;
+        this.upperBound = Integer.MAX_VALUE;
     }
 
-    public CollectionGenerator(int maxValue) {
-        this.maxValue = maxValue;
+    public CollectionGenerator(int upperBound) {
+        this.upperBound = upperBound;
+    }
+
+    protected int getUpperBound() {
+        return this.upperBound;
     }
 
     private int generateRandomNumber() {
-        return (int) (Math.random() * this.maxValue);
+        return (int) (Math.random() * this.upperBound);
     }
 
     public int[] generateCollection(int size) {

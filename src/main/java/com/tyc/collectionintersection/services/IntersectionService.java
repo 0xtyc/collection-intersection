@@ -10,6 +10,14 @@ public class IntersectionService {
     private int[] collectionToHash;
     private int[] collectionToCheck;
 
+    protected int[] getCollectionToHash() {
+        return this.collectionToHash;
+    }
+
+    protected int[] getCollectionToCheck() {
+        return this.collectionToCheck;
+    }
+
     public IntersectionService(int sizeA, int sizeB, int maxValue, boolean hashCollectionA) {
         this.collectionGenerator = new CollectionGenerator(maxValue);
         int[] collectionA = this.collectionGenerator.generateCollection(sizeA);

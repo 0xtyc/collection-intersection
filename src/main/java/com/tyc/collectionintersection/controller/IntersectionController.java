@@ -18,7 +18,7 @@ public class IntersectionController {
 
     @FXML private TextField sizeTextFieldA;
     @FXML private TextField sizeTextFieldB;
-    @FXML private TextField maxValueTextField;
+    @FXML private TextField upperBoundTextField;
         
     @FXML private Label sizeOfIntersectionLabel;
     @FXML private Label timeToCalculateLabel;
@@ -33,18 +33,18 @@ public class IntersectionController {
         // Set default values for the text fields
         sizeTextFieldA.setText("100");
         sizeTextFieldB.setText("10000");
-        maxValueTextField.setText("65535");
+        upperBoundTextField.setText("65535");
 
         // Set the action for the run button
         runButton.setOnAction(event -> onRunButtonClick());
     }
 
-    protected boolean validateInputs() {
+    private boolean validateInputs() {
         final String INVALID_INPUT_MESSAGE = "Please enter valid numbers for all fields";
         final String MAX_VALUE_ERROR_MESSAGE = "Max value must be greater than the size of both collections";
     
         try {
-            maxValue = Integer.parseInt(maxValueTextField.getText());
+            maxValue = Integer.parseInt(upperBoundTextField.getText());
             sizeA = Integer.parseInt(sizeTextFieldA.getText());
             sizeB = Integer.parseInt(sizeTextFieldB.getText());
         } catch (NumberFormatException e) {
@@ -63,8 +63,9 @@ public class IntersectionController {
         return true;
     }
 
-    protected void onRunButtonClick() {
+    private void onRunButtonClick() {
         errorLabel.setText("");
+        
         if (!validateInputs()) {
             return;
         }
