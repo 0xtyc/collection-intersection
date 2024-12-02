@@ -5,13 +5,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.matcher.control.TextInputControlMatchers;
 
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
 import org.testfx.api.FxAssert;
 
 
@@ -30,12 +32,20 @@ public class IntersectionApplicationTest {
 
     @Test
     public void testRunButton(FxRobot robot) {
-    	
-        // Verify that the text fields have the expected default values
-        FxAssert.verifyThat("#sizeTextFieldA", TextInputControlMatchers.hasText("100"));
-        FxAssert.verifyThat("#sizeTextFieldB", TextInputControlMatchers.hasText("10000"));
-        FxAssert.verifyThat("#upperBoundTextField", TextInputControlMatchers.hasText("65535"));
-        
+        // Check that the text fields have the correct initial values
+        FxAssert.verifyThat("#sizeTextFieldA", (TextField field) -> 
+            field.getText().equals("100")
+        );
+        FxAssert.verifyThat("#sizeTextFieldB", (TextField field) -> 
+            field.getText().equals("10000")
+        );
+        FxAssert.verifyThat("#upperBoundTextField", (TextField field) -> 
+            field.getText().equals("65535")
+        );
+        FxAssert.verifyThat("#optionComboBox", (ComboBox<String> comboBox) -> 
+            comboBox.getValue().equals("A")
+        );
+
         // Click the Run button
         robot.clickOn("Run");
     	robot.sleep(1000);
@@ -49,11 +59,30 @@ public class IntersectionApplicationTest {
     }
 
     @Test
-    public void testInvalidInputs(FxRobot robot) {
-        robot.clickOn("#sizeTextFieldA").write("x");
-        robot.clickOn("Run");
+    public void testUpdateInputsAndRun(FxRobot robot) {
+        robot.clickOn("#sizeTextFieldA");
+        robot.eraseText(3);
+        robot.write("300x");
+
+        robot.clickOn("#optionComboBox");
+        robot.clickOn("B");
+        robot.clickOn("#runButton");
+
         FxAssert.verifyThat("#errorLabel", (Label label) -> 
-            label.getText().equals("Please enter valid numbers for all fields")
+            label.getText().equals("Please enter valid collection sizes, they must be numbers greater than 0.")
+        );
+
+        robot.clickOn("#sizeTextFieldA");
+        robot.eraseText(1);
+
+        robot.clickOn("#runButton");
+
+        FxAssert.verifyThat("#errorLabel", (Label label) -> 
+            label.getText().isEmpty()
+        );
+
+        FxAssert.verifyThat("#sizeOfIntersectionLabel", (Label label) -> 
+            label.getText().startsWith("Intersection size")
         );
     }
 }
