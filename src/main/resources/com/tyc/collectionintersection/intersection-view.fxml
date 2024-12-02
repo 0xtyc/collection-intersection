@@ -21,19 +21,12 @@
     <Label fx:id="sizeLabelB" text="Enter size of collection B" />
     <TextField fx:id="sizeTextFieldB" promptText="Enter size of collection B" />
     <Label fx:id="optionLabel" text="Select which collection to hash" />
-    <ComboBox fx:id="optionComboBox" value="A">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="A" />
-                <String fx:value="B" />
-            </FXCollections>
-        </items>
-    </ComboBox> 
+    <ComboBox fx:id="optionComboBox" />
 
     <Label fx:id="upperBoundLabel" text="Enter the upper bound for random collection generation"/>
     <TextField fx:id="upperBoundTextField" promptText="Enter the upper bound" />
     <Label fx:id="sizeOfIntersectionLabel" />
     <Label fx:id="timeToCalculateLabel" />
-    <Label fx:id="errorLabel" textFill="red" />
+    <Label fx:id="errorLabel" textFill="red" wrapText="true"/>
     <Button fx:id="runButton" text="Run" />
 </VBox>

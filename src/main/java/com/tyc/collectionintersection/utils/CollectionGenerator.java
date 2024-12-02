@@ -1,7 +1,11 @@
 package com.tyc.collectionintersection.utils;
 
 public class CollectionGenerator {
-
+    /**
+     * A utility class to generate collections of random numbers between 0 and the upper bound with given size.
+     * The default upper bound is the maximum value of an integer.
+     */
+    
     private int upperBound;
 
     public CollectionGenerator() {
